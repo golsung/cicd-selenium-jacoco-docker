@@ -2,13 +2,13 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.9'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-//	id 'jacoco'
+	id 'jacoco'
 }
 
-//jacoco {
-//	toolVersion = "0.8.8"
-////	reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
-//}
+jacoco {
+	toolVersion = "0.8.8"
+//	reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
 
 group = 'cloud.ez2learn'
 version = '0.0.1-SNAPSHOT'
@@ -71,34 +71,34 @@ task unitTest(type: Test) {
 	useJUnitPlatform()
 }
 
-//jacocoTestReport {
-//	finalizedBy 'jacocoTestCoverageVerification'
-//	dependsOn test // tests are required to run before generating the report
-//}
+jacocoTestReport {
+	finalizedBy 'jacocoTestCoverageVerification'
+	dependsOn test // tests are required to run before generating the report
+}
 
-//jacocoTestCoverageVerification {
-//	violationRules {
-//		rule {
-//			element = 'CLASS'
-//
-//			limit {
-//				counter = 'LINE'
-//				value = 'COVEREDRATIO'
-//				minimum = 0.60
-//
-//			}
-//			excludes = ['*.SeleniumProjApplication']
-//
-//		}
-//	}
-//}
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			element = 'CLASS'
 
-//test {
-////	exclude '**/apiTests/**'
-//	exclude '**/e2eTests/**'
-//	systemProperty "calculator.url", System.getProperty("calculator.url")
-//	finalizedBy jacocoTestReport // report is always generated after tests run
-//	useJUnitPlatform()
-//}
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 0.60
+
+			}
+			excludes = ['*.SeleniumProjApplication']
+
+		}
+	}
+}
+
+test {
+//	exclude '**/apiTests/**'
+	exclude '**/e2eTests/**'
+	systemProperty "calculator.url", System.getProperty("calculator.url")
+	finalizedBy jacocoTestReport // report is always generated after tests run
+	useJUnitPlatform()
+}
 
 
