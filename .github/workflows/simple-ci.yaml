@@ -62,7 +62,7 @@ jobs:
     needs: docker-push
     steps:
       - name: docker run
-        run:  docker run -d --rm -p 8765:8080 --name calculator insang/calculator
+        run:  docker run -d --rm -p 8080:8080 --name calculator insang/calculator
       - name: check out code in build (virtual) machine
         uses: actions/checkout@v3
       - name: Set up Java 11
@@ -76,8 +76,8 @@ jobs:
         uses: nanasess/setup-chromedriver@v1
       - name: e2e test
         run: |
-          sleep 60
-          ./gradlew e2eTest -Dcalculator.url=http://localhost:8765
+          sleep 20
+          ./gradlew e2eTest -Dcalculator.url=http://localhost:8080
 #  e2e-test:
 #    runs-on: ubuntu-latest
 #    needs: unit-api-test
