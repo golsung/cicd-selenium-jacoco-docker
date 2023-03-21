@@ -34,6 +34,8 @@ dependencies {
 
 jar {
     enabled = false
+	archivesBaseName = 'calculator'
+	archiveVersion = '0.0.1-SNAPSHOT'
 }
 
 //jacocoTestReport {
