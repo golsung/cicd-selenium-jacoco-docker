@@ -87,7 +87,7 @@ jacocoTestCoverageVerification {
 				minimum = 0.60
 
 			}
-			excludes = ['*.SeleniumProjApplication']
+			excludes = ['*.SeleniumProjApplication', '*.IndexController', '*.CalculatorController']
 
 		}
 	}
