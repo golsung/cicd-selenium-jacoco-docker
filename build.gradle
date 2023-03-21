@@ -63,13 +63,13 @@ task apiTest(type: Test) {
 	useJUnitPlatform()
 }
 
-task unitTest(type: Test) {
-	exclude '**/apiTests/**'
-	exclude '**/e2eTests/**'
-	include '**/unitTests/**'
-//	systemProperty "calculator.url", System.getProperty("calculator.url")
-	useJUnitPlatform()
-}
+//task unitTest(type: Test) {
+//	exclude '**/apiTests/**'
+//	exclude '**/e2eTests/**'
+//	include '**/unitTests/**'
+////	systemProperty "calculator.url", System.getProperty("calculator.url")
+//	useJUnitPlatform()
+//}
 
 jacocoTestReport {
 	finalizedBy 'jacocoTestCoverageVerification'
@@ -94,7 +94,7 @@ jacocoTestCoverageVerification {
 }
 
 test {
-//	exclude '**/apiTests/**'
+	exclude '**/apiTests/**'
 	exclude '**/e2eTests/**'
 	systemProperty "calculator.url", System.getProperty("calculator.url")
 	finalizedBy jacocoTestReport // report is always generated after tests run
