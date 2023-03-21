@@ -31,7 +31,7 @@ jobs:
       - name: Unit Test
         run: ./gradlew test -Dcalculator.url=http://localhost
       - name: Upload Jacoco Report
-        if: ${{ always() }}
+        if: ${{ always() }} # failure()
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
