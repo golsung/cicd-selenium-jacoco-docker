@@ -62,7 +62,7 @@ jobs:
     needs: docker-push
     steps:
       - name: docker run
-        run:  docker run -d --rm -p 8765:8080 --name calculator calculator
+        run:  docker run -d --rm -p 8765:8080 --name calculator insang/calculator
       - name: check out code in build (virtual) machine
         uses: actions/checkout@v3
       - name: Set up Java 11
