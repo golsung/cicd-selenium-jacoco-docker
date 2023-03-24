@@ -59,21 +59,21 @@ jobs:
           DOCKER_PASSWD: ${{secrets.DOCKER_PASSWD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWD
-      - name: Generate build
-        id: prep
-        run: |
-          ts=$(date +%s)
-          echo "::set-output name=BUILD_ID::${ts}"
+#      - name: Generate build
+#        id: prep
+#        run: |
+#          ts=$(date +%s)
+#          echo "::set-output name=BUILD_ID::${ts}"
       - name: Build the docker image
-        run: docker build -t insang/calculator:${{steps.prep.outputs.BUILD_ID}} .
+        run: docker build -t insang/calculator .
       - name: docker push
-        run: docker push insang/calculator:${{steps.prep.outputs.BUILD_ID}}
+        run: docker push insang/calculator
   deploy-to-staging-for-e2e-testing:
     runs-on: ubuntu-latest
     needs: docker-push
     steps:
       - name: docker run
-        run:  docker run -d --rm -p 8080:8080 --name calculator insang/calculator:${{docker-push.steps.prep.outputs.BUILD_ID}}
+        run:  docker run -d --rm -p 8080:8080 --name calculator insang/calculator
       - name: check out code in build (virtual) machine
         uses: actions/checkout@v3
       - name: Set up Java 11
