@@ -59,7 +59,7 @@ jobs:
           DOCKER_PASSWD: ${{secrets.DOCKER_PASSWD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWD
-#      - name: Generate build
+#      - name: Generate build ID
 #        id: prep
 #        run: |
 #          ts=$(date +%s)
