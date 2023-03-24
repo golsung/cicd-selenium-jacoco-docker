@@ -59,16 +59,22 @@ jobs:
 #        run: |
 #          ts=$(date +%s)
 #          echo "::set-output name=BUILD_ID::${ts}"
+#      - name: Build the docker image
+#        run: docker build -t insang/calculator:${GITHUB_SHA::8} .
       - name: Build the docker image
-        run: docker build -t insang/calculator:${GITHUB_SHA::8} .
+        run: docker build -t insang/calculator .
+#      - name: docker push
+#        run: docker push insang/calculator:${GITHUB_SHA::8}
       - name: docker push
-        run: docker push insang/calculator:${GITHUB_SHA::8}
+        run: docker push insang/calculator
   deploy-to-staging-for-e2e-testing:
     runs-on: ubuntu-latest
     needs: docker-push
     steps:
       - name: docker run
-        run:  docker run -d --rm -p 8080:8080 --name calculator insang/calculator:${GITHUB_SHA::8}
+        run: docker run -d --rm -p 8080:8080 --name calculator insang/calculator
+#      - name: docker run
+#        run:  docker run -d --rm -p 8080:8080 --name calculator insang/calculator:${GITHUB_SHA::8}
       - name: check out code in build (virtual) machine
         uses: actions/checkout@v3
       - name: Set up Java 11
