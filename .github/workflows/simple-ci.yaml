@@ -31,7 +31,7 @@ jobs:
       - name: Unit Test
         run: ./gradlew test -Dcalculator.url=http://localhost
       - name: Upload Jacoco Report
-        if: ${{ always() }} # failure()
+        if: always() # failure()
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
@@ -59,8 +59,11 @@ jobs:
           DOCKER_PASSWD: ${{secrets.DOCKER_PASSWD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWD
+      - name: Generate build is
+        id: prep
+        run: ts=$(date +%s)
       - name: Build the docker image
-        run: docker build -t insang/calculator .
+        run: docker build -t insang/calculator:${{steps.prep.ts}} .
       - name: docker push
         run: docker push insang/calculator
   deploy-to-staging:
