@@ -23,10 +23,12 @@ jobs:
         run: java --version
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
+#      - name: Unit Test
+#        run: ./gradlew test
       - name: Unit Test
         run: ./gradlew test -Dcalculator.url=http://localhost
       - name: Upload Jacoco Report
-        if: always() # failure()
+        if: failure() #always()
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
@@ -54,11 +56,7 @@ jobs:
           DOCKER_PASSWD: ${{secrets.DOCKER_PASSWD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWD
-#      - name: Generate build ID
-#        id: prep
-#        run: |
-#          ts=$(date +%s)
-#          echo "::set-output name=BUILD_ID::${ts}"
+#
 #      - name: Build the docker image
 #        run: docker build -t insang/calculator:${GITHUB_SHA::8} .
       - name: Build the docker image
