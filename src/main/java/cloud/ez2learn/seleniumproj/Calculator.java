@@ -28,6 +28,7 @@ public class Calculator {
     public void setRightOperand(int b) {
         this.b = b;
     }
+
     public int getDifference() {
          this.result = a - b;
          return this.result;

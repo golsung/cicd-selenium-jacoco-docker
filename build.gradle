@@ -43,7 +43,7 @@ jacocoTestReport {
 		html.required = true
 		xml.required = false
 		csv.required = false
-		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+//		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
 	}
 }
 
@@ -78,7 +78,7 @@ jacocoTestCoverageVerification {
 			limit {
 				counter = 'INSTRUCTION'
 				value = 'COVEREDRATIO'
-				minimum = 0.50
+				minimum = 0.90
 
 			}
 			excludes = ['*.SeleniumProjApplication', '*.IndexController', '*.CalculatorController']
@@ -88,9 +88,9 @@ jacocoTestCoverageVerification {
 }
 
 test {
-	exclude '**/apiTests/**'
+	include '**/apiTests/**'
 	exclude '**/e2eTests/**'
-//	include '**/unitTests/**'
+	include '**/unitTests/**'
 //	systemProperty "calculator.url", System.getProperty("calculator.url")
 	finalizedBy jacocoTestReport // report is always generated after tests run
 	useJUnitPlatform()

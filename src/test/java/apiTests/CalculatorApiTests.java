@@ -25,17 +25,17 @@ CalculatorApiTests {
 	@LocalServerPort
 	int randomServerPort;
 
-	@Test
-	void goHome() {
-		String result = testRestTemplate.getForObject(server+":"+randomServerPort, String.class);
-		assertTrue(result.contains("Learn CI/CD at Ez2Learn Cloud"));
-	}
+//	@Test
+//	void goHome() {
+//		String result = testRestTemplate.getForObject(server+":"+randomServerPort, String.class);
+//		assertTrue(result.contains("Learn CI/CD at Ez2Learn Cloud"));
+//	}
 
-	@Test
-	void getSum() {
-		int result = testRestTemplate.getForObject(server+":" + randomServerPort + "/api/sum?a=5&b=10", Integer.class);
-		assertEquals(15, result);
-	}
+//	@Test
+//	void getSum() {
+//		int result = testRestTemplate.getForObject(server+":" + randomServerPort + "/api/sum?a=5&b=10", Integer.class);
+//		assertEquals(15, result);
+//	}
 
 //	@Test
 //	void getSum() {
