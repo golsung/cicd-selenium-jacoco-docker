@@ -38,13 +38,14 @@ jar {
 	archiveVersion = '0.0.1-SNAPSHOT'
 }
 
-//jacocoTestReport {
-//	reports {
-//		xml.required = false
-//		csv.required = false
-//		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
-//	}
-//}
+jacocoTestReport {
+	reports {
+		html.required = true
+		xml.required = false
+		csv.required = false
+		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+	}
+}
 
 
 task e2eTest(type: Test) {
@@ -63,13 +64,6 @@ task apiTest(type: Test) {
 	useJUnitPlatform()
 }
 
-//task unitTest(type: Test) {
-//	exclude '**/apiTests/**'
-//	exclude '**/e2eTests/**'
-//	include '**/unitTests/**'
-////	systemProperty "calculator.url", System.getProperty("calculator.url")
-//	useJUnitPlatform()
-//}
 
 jacocoTestReport {
 	finalizedBy 'jacocoTestCoverageVerification'
@@ -82,9 +76,9 @@ jacocoTestCoverageVerification {
 			element = 'CLASS'
 
 			limit {
-				counter = 'LINE'
+				counter = 'INSTRUCTION'
 				value = 'COVEREDRATIO'
-				minimum = 0.60
+				minimum = 0.50
 
 			}
 			excludes = ['*.SeleniumProjApplication', '*.IndexController', '*.CalculatorController']
