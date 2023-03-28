@@ -25,12 +25,12 @@ jobs:
         run: chmod +x ./gradlew
       - name: Unit Test
         run: ./gradlew test
-#      - name: Upload Jacoco Report
-#        if: failure()
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: jacoco-report
-#          path: build/reports/jacoco/test/html
+      - name: Upload Jacoco Report
+#        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-report
+          path: build/reports/jacoco/test/html
       - name: Api Test
         run: ./gradlew apiTest -Dcalculator.url=http://localhost
 #  docker-push:
