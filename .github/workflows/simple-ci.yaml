@@ -69,8 +69,8 @@ jobs:
     steps:
       - name: docker run
         run: docker run -d --rm -p 8080:8080 --name calculator insang/calculator
-      - name: docker run
-        run:  docker run -d --rm -p 8080:8080 --name calculator insang/calculator:${GITHUB_SHA::8}
+#      - name: docker run
+#        run:  docker run -d --rm -p 8080:8080 --name calculator insang/calculator:${GITHUB_SHA::8}
       - name: check out test code in build (virtual) machine
         uses: actions/checkout@v3
       - name: Set up Java 11
